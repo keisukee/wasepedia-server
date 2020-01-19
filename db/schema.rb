@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_19_100029) do
+ActiveRecord::Schema.define(version: 2020_01_19_100210) do
 
   create_table "classworks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2020_01_19_100029) do
     t.float "quality"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "university_id"
+    t.index ["university_id"], name: "index_classworks_on_university_id"
   end
 
   create_table "universities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -42,4 +44,5 @@ ActiveRecord::Schema.define(version: 2020_01_19_100029) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "classworks", "universities"
 end
